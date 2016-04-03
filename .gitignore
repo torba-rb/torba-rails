@@ -1,0 +1,17 @@
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+tmp/
+log/
+public/
+*.bundle
+*.so
+*.o
+*.a
+*.sqlite3
+mkmf.log
