@@ -4,7 +4,9 @@ rails_versions = %w[3.2 4.2 5.0]
 
 task :bundle do
   rails_versions.each do |version|
-    sh "cd test/#{version} && bundle"
+    Bundler.with_clean_env do
+      sh "BUNDLE_GEMFILE=test/#{version}/Gemfile bundle install"
+    end
   end
 end
 
@@ -15,7 +17,9 @@ end
 
 task :test_all do
   rails_versions.each do |version|
-    sh "RAILS_VERSION=#{version} bundle exec rake test"
+    Bundler.with_clean_env do
+      sh "RAILS_VERSION=#{version} bundle exec rake test"
+    end
   end
 end
 
