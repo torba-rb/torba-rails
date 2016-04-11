@@ -1,6 +1,6 @@
 require "bundler/gem_tasks"
 
-rails_versions = %w[3.2 4.1 4.2 5.0]
+rails_versions = %w[3.2 4.1 4.2 5.0 edge]
 
 task :test do
   version = ENV["RAILS_VERSION"] || rails_versions.last

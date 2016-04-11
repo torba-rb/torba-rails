@@ -2,7 +2,9 @@ module Torba
   class Engine < Rails::Engine
     def self.setup(config = Rails.application.config)
       config.assets.paths.concat(Torba.load_path)
-      config.assets.precompile.concat(Torba.non_js_css_logical_paths)
+      unless using_sprockets4?
+        config.assets.precompile.concat(Torba.non_js_css_logical_paths)
+      end
     end
 
     def self.serve_static_files?(config = Rails.application.config)
@@ -25,5 +27,12 @@ module Torba
       require "torba/rake_task"
       Torba::RakeTask.new("torba:pack", :before => "assets:precompile")
     end
+
+    def self.using_sprockets4?
+      require 'sprockets/version' # Required for Rails 3.2.x with Sprockets 2.x.
+      Gem::Version.new(Sprockets::VERSION) >= Gem::Version.new('4.x')
+    end
+
+    private_class_method :using_sprockets4?
   end
 end
