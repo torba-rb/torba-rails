@@ -11,7 +11,7 @@ Production ready.
 
 ## Documentation
 
-[Released version](http://rubydoc.info/gems/torba-rails/1.0.0)
+[Released version](http://rubydoc.info/gems/torba-rails/1.0.1)
 
 ## Installation
 
