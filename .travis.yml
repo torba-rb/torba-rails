@@ -1,4 +1,12 @@
+sudo: false
+cache: bundler
 language: ruby
 rvm:
   - 2.2.2
+  - 2.3.0
 bundler_args: --without doc debug
+env:
+  matrix:
+    - RAILS_VERSION=3.2
+    - RAILS_VERSION=4.2
+    - RAILS_VERSION=5.0
