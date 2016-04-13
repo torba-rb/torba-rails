@@ -16,14 +16,14 @@ module Torba
       if Engine.serve_static_files?
         require "torba/verify"
         Engine.setup
+      elsif defined?(Rake) && Rake.application.top_level_tasks.include?("assets:precompile")
+        Engine.setup
       end
     end
 
     rake_tasks do
       require "torba/rake_task"
-      Torba::RakeTask.new("torba:pack", :before => "assets:precompile") do
-        Engine.setup
-      end
+      Torba::RakeTask.new("torba:pack", :before => "assets:precompile")
     end
   end
 end

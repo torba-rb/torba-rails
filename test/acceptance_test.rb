@@ -40,7 +40,7 @@ module Torba
     def test_assets_precompile
       out, err, status = run_project_cmd(%{bundle exec rake assets:precompile}, "RAILS_ENV" => "production")
       assert status.success?, err
-      assets_version = (rails_version == "3.2") ? "3.2" : "4.2+"
+      assets_version = (rails_version > "4.1") ? "4.2+" : rails_version
       assert_dir_included "test/compiled_assets/#{assets_version}", "test/#{rails_version}/public/assets"
     end
 
