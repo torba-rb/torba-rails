@@ -18,4 +18,4 @@ task :test_all do
   end
 end
 
-task :default => :test_all
+task :default => :test

@@ -43,7 +43,7 @@ bundle exec rake test
 bundle exec rake test RAILS_VERSION=4.2
 
 # Runs the test suite for all supported versions of Rails.
-bundle exec rake
+bundle exec rake test_all
 ```
 
 ## Working with documentation
