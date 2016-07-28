@@ -12,11 +12,15 @@ module Torba
         ENV["RAILS_GROUPS"] == "assets" # Rails 3
     end
 
+    def self.precompile_assets?
+      defined?(Rake) && Rake.application.top_level_tasks.include?("assets:precompile")
+    end
+
     initializer "torba.assets" do
-      if Engine.serve_static_files?
-        require "torba/verify"
+      if Engine.precompile_assets?
         Engine.setup
-      elsif defined?(Rake) && Rake.application.top_level_tasks.include?("assets:precompile")
+      elsif Engine.serve_static_files?
+        require "torba/verify"
         Engine.setup
       end
     end
