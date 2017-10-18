@@ -16,7 +16,7 @@ module Torba
       if Engine.serve_static_files?
         require "torba/verify"
         Engine.setup
-      elsif defined?(Rake) && Rake.application.top_level_tasks.include?("assets:precompile")
+      elsif defined?(Rake.application) && Rake.application.top_level_tasks.include?("assets:precompile")
         Engine.setup
       end
     end
