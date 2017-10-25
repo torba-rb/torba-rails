@@ -1,3 +1,4 @@
+require_relative "environment"
 require "bundler/setup"
 require "minitest/autorun"
 require "minitest/assert_dirs_equal"
