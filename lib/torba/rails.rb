@@ -13,7 +13,7 @@ module Torba
     end
 
     def self.precompile_assets?
-      defined?(Rake) && Rake.application.top_level_tasks.include?("assets:precompile")
+      defined?(Rake.application) && Rake.application.top_level_tasks.include?("assets:precompile")
     end
 
     initializer "torba.assets" do
