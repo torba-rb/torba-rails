@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "torba-rails"
-  spec.version       = "1.0.1"
+  spec.version       = "1.0.2"
   spec.authors       = ["Andrii Malyshko"]
   spec.email         = ["mail@nashbridges.me"]
   spec.description   = "Torba + Rails integration"
