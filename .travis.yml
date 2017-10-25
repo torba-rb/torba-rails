@@ -8,8 +8,9 @@ cache:
     - test/5.0/vendor/bundle
 language: ruby
 rvm:
-  - 2.2.2
-  - 2.3.0
+  - 2.2
+  - 2.3
+  - 2.4
 bundler_args: --without doc debug --path=vendor/bundle
 env:
   matrix:
