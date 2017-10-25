@@ -6,6 +6,7 @@ cache:
     - test/4.1/vendor/bundle
     - test/4.2/vendor/bundle
     - test/5.0/vendor/bundle
+    - test/5.1/vendor/bundle
 language: ruby
 rvm:
   - 2.2
@@ -17,6 +18,7 @@ env:
   - RAILS_VERSION=4.1
   - RAILS_VERSION=4.2
   - RAILS_VERSION=5.0
+  - RAILS_VERSION=5.1
 matrix:
   exclude:
     # https://github.com/rails/rails/issues/25125
