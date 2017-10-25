@@ -44,6 +44,11 @@ module Torba
       assert_dir_included "test/compiled_assets/#{assets_version}", "test/#{rails_version}/public/assets"
     end
 
+    def test_assets_precompile_with_serve_static_files_turned_on
+      out, err, status = run_project_cmd(%{bundle exec rake assets:precompile}, "RAILS_ENV" => "production", "RAILS_SERVE_STATIC_FILES" => "true")
+      assert status.success?, err
+    end
+
     def rails_version
       Torba::Test::RAILS_VERSION
     end
