@@ -45,7 +45,7 @@ module Torba
     end
 
     def rails_version
-      ENV["RAILS_VERSION"] || "4.2"
+      Torba::Test::RAILS_VERSION
     end
 
     def in_project_dir(&blk)

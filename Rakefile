@@ -1,19 +1,17 @@
 require "bundler/gem_tasks"
-
-rails_versions = %w[3.2 4.1 4.2 5.0]
+require_relative "test/environment"
 
 task :test do
-  version = ENV["RAILS_VERSION"] || rails_versions.last
   Bundler.with_clean_env do
-    sh "BUNDLE_GEMFILE=test/#{version}/Gemfile bundle install"
-  end
+    sh "BUNDLE_GEMFILE=test/#{Torba::Test::RAILS_VERSION}/Gemfile bundle install"
 
-  $LOAD_PATH.unshift("test")
-  Dir.glob("./test/**/*_test.rb").each { |file| require file}
+    $LOAD_PATH.unshift("test")
+    Dir.glob("./test/**/*_test.rb").each { |file| require file}
+  end
 end
 
 task :test_all do
-  rails_versions.each do |version|
+  Torba::Test::SUPPORTED_RAILS_VERSIONS.each do |version|
     exit 1 unless sh "bundle exec rake test RAILS_VERSION=#{version}"
   end
 end
