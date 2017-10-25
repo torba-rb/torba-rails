@@ -13,8 +13,12 @@ rvm:
   - 2.4
 bundler_args: --without doc debug --path=vendor/bundle
 env:
-  matrix:
-    - RAILS_VERSION=3.2
-    - RAILS_VERSION=4.1
-    - RAILS_VERSION=4.2
-    - RAILS_VERSION=5.0
+  - RAILS_VERSION=3.2
+  - RAILS_VERSION=4.1
+  - RAILS_VERSION=4.2
+  - RAILS_VERSION=5.0
+matrix:
+  exclude:
+    # https://github.com/rails/rails/issues/25125
+    - rvm: 2.4
+      env: RAILS_VERSION=4.1
