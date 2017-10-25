@@ -3,10 +3,9 @@ require_relative "test/environment"
 
 task :test do
   Bundler.with_clean_env do
-    sh "BUNDLE_GEMFILE=test/#{Torba::Test::RAILS_VERSION}/Gemfile bundle install"
-
+    sh "bundle install --gemfile=test/#{Torba::Test::RAILS_VERSION}/Gemfile #{"--path=vendor/bundle" if ENV["TRAVIS"]}"
     $LOAD_PATH.unshift("test")
-    Dir.glob("./test/**/*_test.rb").each { |file| require file}
+    require_relative "test/acceptance_test"
   end
 end
 

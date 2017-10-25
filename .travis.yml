@@ -1,10 +1,16 @@
 sudo: false
-cache: bundler
+cache:
+  directories:
+    - vendor/bundle
+    - test/3.2/vendor/bundle
+    - test/4.1/vendor/bundle
+    - test/4.2/vendor/bundle
+    - test/5.0/vendor/bundle
 language: ruby
 rvm:
   - 2.2.2
   - 2.3.0
-bundler_args: --without doc debug
+bundler_args: --without doc debug --path=vendor/bundle
 env:
   matrix:
     - RAILS_VERSION=3.2
