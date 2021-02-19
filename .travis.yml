@@ -8,19 +8,26 @@ cache:
     - test/5.0/vendor/bundle
     - test/5.1/vendor/bundle
 language: ruby
-rvm:
-  - 2.2.2
-  - 2.3
-  - 2.4
 bundler_args: --without doc debug --path=vendor/bundle
-env:
-  - RAILS_VERSION=3.2
-  - RAILS_VERSION=4.1
-  - RAILS_VERSION=4.2
-  - RAILS_VERSION=5.0
-  - RAILS_VERSION=5.1
-matrix:
-  exclude:
-    # https://github.com/rails/rails/issues/25125
-    - rvm: 2.4
+
+# Explicitly test each Rails version against only one Ruby version to
+# skip any redundancy builds. Rails and Torba are tested against
+# different Ruby versions each in their own repository, and the integration
+# itself is written in standard Ruby. Here we only question
+# does the torba-rails integration work with a specific Rails version
+# or not.
+#
+# Ruby 2.3 has been chosen for Rails < 5 as a common denominator
+# that satisfies https://github.com/rails/rails/issues/25125.
+jobs:
+  include:
+    - rvm: 2.3
+      env: RAILS_VERSION=3.2
+    - rvm: 2.3
       env: RAILS_VERSION=4.1
+    - rvm: 2.3
+      env: RAILS_VERSION=4.2
+    - rvm: 2.7
+      env: RAILS_VERSION=5.0
+    - rvm: 2.7
+      env: RAILS_VERSION=5.1
