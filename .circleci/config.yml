@@ -1,0 +1,21 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@1.1.2 
+
+jobs:
+  rails_32:
+    docker:
+      - image: cimg/ruby:2.3
+        environment:
+          - RAILS_VERSION: 3.2
+    steps:
+      - checkout
+      - ruby/install-deps
+      - run:
+          name: Test
+          command: bundle exec rake test
+
+workflows:
+  test_all:
+    jobs:
+      - rails_32
