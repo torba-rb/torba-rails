@@ -1,19 +1,23 @@
 version: 2.1
-orbs:
-  ruby: circleci/ruby@1.1.2 
 
 jobs:
   rails_32:
     docker:
       - image: circleci/ruby:2.3
-        environment:
-          - RAILS_VERSION: 3.2
     steps:
       - checkout
-      - ruby/install-deps
+      - restore_cache:
+          keys:
+            - gems-v1-rails_32-{{ checksum "test/3.2/Gemfile" }}
+            - gems-v1-rails_32-
       - run:
           name: Test
-          command: bundle exec rake test
+          command: bundle exec rake test RAILS_VERSION=3.2
+      - save_cache:
+          key: gems-v1-rails_32-{{ checksum "test/3.2/Gemfile" }}
+          paths:
+            - test/3.2/vendor/bundle
+
 
 workflows:
   test_all:

@@ -5,7 +5,7 @@ task :test do
   Bundler.with_clean_env do
     rm_rf "test/#{Torba::Test::RAILS_VERSION}/public/assets"
     rm_rf "test/#{Torba::Test::RAILS_VERSION}/Gemfile.lock"
-    sh "bundle install --gemfile=test/#{Torba::Test::RAILS_VERSION}/Gemfile #{"--path=vendor/bundle" if ENV["TRAVIS"]}"
+    sh "bundle install --gemfile=test/#{Torba::Test::RAILS_VERSION}/Gemfile #{"--path=vendor/bundle" if ENV["CIRCLECI"]}"
     $LOAD_PATH.unshift("test")
     require_relative "test/acceptance_test"
   end
