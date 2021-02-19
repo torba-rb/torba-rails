@@ -5,7 +5,7 @@ orbs:
 jobs:
   rails_32:
     docker:
-      - image: cimg/ruby:2.3
+      - image: circleci/ruby:2.3
         environment:
           - RAILS_VERSION: 3.2
     steps:
