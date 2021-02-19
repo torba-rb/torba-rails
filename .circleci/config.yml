@@ -6,6 +6,7 @@ jobs:
       - image: circleci/ruby:2.3
     steps:
       - checkout
+      - run: bundle install
       - restore_cache:
           keys:
             - gems-v1-rails_32-{{ checksum "test/3.2/Gemfile" }}
