@@ -7,6 +7,7 @@ cache:
     - test/4.2/vendor/bundle
     - test/5.0/vendor/bundle
     - test/5.1/vendor/bundle
+    - test/6.1/vendor/bundle
 language: ruby
 bundler_args: --without doc debug --path=vendor/bundle
 
@@ -31,3 +32,5 @@ jobs:
       env: RAILS_VERSION=5.0
     - rvm: 2.7
       env: RAILS_VERSION=5.1
+    - rvm: 2.7
+      env: RAILS_VERSION=6.1
