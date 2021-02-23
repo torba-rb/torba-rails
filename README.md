@@ -75,6 +75,37 @@ For Capistrano 3, you can set this up in `config/deploy.rb`:
 set :default_env, { torba_home_path: shared_path.join('vendor/torba') }
 ```
 
+## Disable torba-rails
+
+The gem tries its best to be activated when it is needed. Currently this
+is aligned with serving assets by Rails, i.e. torba-rails is enabled
+for development and testing and disabled for production (where assets are
+served by an external web-server like nginx).
+
+This default is fine for a single running local machine or server, but may
+conflict with a multiple server setup. For example, you may want to precompile
+assets on one machine and copy the compiled assets to many testing
+machines/containers. On the testing machine you still want to serve the assets
+by Rails, but you don't want torba-rails to kick in and start verifying its
+assets. You don't want to run `torba pack` on each machine either.
+
+In such situations you can prevent torba-rails from loading entirely.
+Set an environment variable on a machine you don't want torba-rails to run:
+
+```
+export TORBA_RAILS_DISABLE=true
+```
+
+then conditionally `require` the gem:
+
+
+```ruby
+# Gemfile
+gem 'torba-rails', require: ENV['TORBA_RAILS_DISABLE'] != 'true'
+```
+
+The gem will be still required on a machine without the variable set.
+
 [torba-github]: https://github.com/torba-rb/torba
 [torba-usage]: https://github.com/torba-rb/torba#usage
 [rails-ticket-vendoring]: https://github.com/rails/rails/pull/7968
